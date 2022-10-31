@@ -1,6 +1,6 @@
 ## Interface: 100000
 ## Title: HideActionBarBorders
 ## Notes: Hides the default action bar borders, giving solid square icons.
-## Version: 1.0
+## Version: @project-version@
 
 src\main.lua
