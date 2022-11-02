@@ -8,10 +8,11 @@ local bars = {
     "MultiBar6",
     "MultiBar7",
     "PetAction",
+    "Stance",
 }
 
 local function ButtonCount(bar)
-    if bar == "PetAction" then
+    if bar == "PetAction" or bar == "Stance" then
         return 10
     else
         return 12
