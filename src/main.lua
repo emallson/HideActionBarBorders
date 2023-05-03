@@ -21,7 +21,7 @@ end
 
 local function HideBorder(button)
     button.NormalTexture:Hide()
-    button.IconMask:Hide()
+    button.icon:RemoveMaskTexture(button.IconMask)
 end
 
 local replacementTexture = "interface/addons/HideActionBarBorders/resources/uiactionbar2x"
