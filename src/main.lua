@@ -1,3 +1,4 @@
+local name = ...
 local bars = {
     "Action",
     "MultiBarBottomLeft",
@@ -59,8 +60,10 @@ local function AdjustButtonOverlays(button)
     RemapTexture(button.CheckedTexture)
     RemapTexture(button.SpellHighlightTexture)
     RemapTexture(button.NewActionTexture)
-    RemapTexture(button.PushedTexture)
+    --RemapTexture(button.PushedTexture)
     RemapTexture(button.Border)
+
+    button.SlotBackground:SetDrawLayer("BACKGROUND", -1)
 end
 
 local function HideSelf(self)
@@ -84,6 +87,11 @@ local function setup()
     end
 end
 
--- this addresses a race condition with applying the above to the default action bar. 
--- naively calling `setup` frequently causes the borders to be hidden on all bars *except* the main bar.
-C_Timer.After(0, setup)
+local frame = CreateFrame("Frame")
+
+frame:RegisterEvent("ADDON_LOADED")
+frame:SetScript("OnEvent", function(_self, _eventName, addonName)
+    if addonName == name then
+        setup()
+    end
+end)
