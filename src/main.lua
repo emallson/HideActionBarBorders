@@ -44,7 +44,9 @@ local function RemapTexture(texture)
     local atlas = replacementAtlas[atlasId]
 
     -- don't even attempt to remap if the atlas is missing
-    if atlas == nil then return end
+    if atlas == nil then
+        return
+    end
 
     local width = texture:GetWidth()
     local height = texture:GetHeight()
@@ -60,7 +62,7 @@ local function AdjustButtonOverlays(button)
     RemapTexture(button.CheckedTexture)
     RemapTexture(button.SpellHighlightTexture)
     RemapTexture(button.NewActionTexture)
-    --RemapTexture(button.PushedTexture)
+    RemapTexture(button.PushedTexture)
     RemapTexture(button.Border)
 
     button.SlotBackground:SetDrawLayer("BACKGROUND", -1)
@@ -89,9 +91,7 @@ end
 
 local frame = CreateFrame("Frame")
 
-frame:RegisterEvent("ADDON_LOADED")
-frame:SetScript("OnEvent", function(_self, _eventName, addonName)
-    if addonName == name then
-        setup()
-    end
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:SetScript("OnEvent", function()
+    setup()
 end)
