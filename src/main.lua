@@ -27,6 +27,7 @@ end
 
 local replacementTexture = "interface/addons/HideActionBarBorders/resources/uiactionbar2x"
 
+
 local replacementAtlas = {
     ["UI-HUD-ActionBar-IconFrame-Slot"]={64, 31, 0.701172, 0.951172, 0.102051, 0.162598, false, false, "2x"},
     ["UI-HUD-ActionBar-IconFrame"]={46, 22, 0.701172, 0.880859, 0.316895, 0.36084, false, false, "2x"},
@@ -39,7 +40,7 @@ local replacementAtlas = {
     ["UI-HUD-ActionBar-IconFrame-AddRow-Down"]={51, 25, 0.701172, 0.900391, 0.266113, 0.315918, false, false, "2x"},
 }
 
-local function RemapTexture(texture)
+local function RemapTexture(texture, replacementTexture)
     local atlasId = texture:GetAtlas()
     local atlas = replacementAtlas[atlasId]
 
@@ -58,14 +59,19 @@ end
 
 local function AdjustButtonOverlays(button)
     button.cooldown:SetAllPoints(button)
-    RemapTexture(button.HighlightTexture)
-    RemapTexture(button.CheckedTexture)
-    RemapTexture(button.SpellHighlightTexture)
-    RemapTexture(button.NewActionTexture)
-    RemapTexture(button.PushedTexture)
-    RemapTexture(button.Border)
+    RemapTexture(button.HighlightTexture, replacementTexture)
+    RemapTexture(button.CheckedTexture, replacementTexture)
+    RemapTexture(button.SpellHighlightTexture, replacementTexture)
+    RemapTexture(button.NewActionTexture, replacementTexture)
+    RemapTexture(button.PushedTexture, replacementTexture)
+    RemapTexture(button.Border, replacementTexture)
 
     button.SlotBackground:SetDrawLayer("BACKGROUND", -1)
+
+    local animFrame = button.SpellCastAnimFrame
+    local interruptFrame = button.InterruptDisplay
+    animFrame:SetScript("OnShow", function(self) self:Hide() end)
+    interruptFrame:SetScript("OnShow", function(self) self:Hide() end)
 end
 
 local function HideSelf(self)
