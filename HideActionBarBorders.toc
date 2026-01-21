@@ -3,5 +3,17 @@
 ## Notes: Hides the default action bar borders, giving solid square icons.
 ## Version: @project-version@
 ## X-Curse-Project-ID: 695679
+## Category: Action Bars
+## Category-enUS: Action Bars
+## Category-deDE: Aktionsleisten
+## Category-esES: Barras de acción
+## Category-esMX: Barras de acción
+## Category-frFR: Barres d’action
+## Category-itIT: Barre delle azioni
+## Category-koKR: 행동 단축바
+## Category-ptBR: Barras de ação
+## Category-ruRU: Панели команд
+## Category-zhCN: 动作条
+## Category-zhTW: 快捷列
 
 src\main.lua
